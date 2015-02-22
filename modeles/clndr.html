@@ -1,0 +1,42 @@
+[(#REM) Valeur par défaut du modèle CLNDR ]
+
+#SET{nom, #ENV{nom, calendrier}}
+#SET{template, #ENV{template, base}}
+#SET{json, #ENV*{json}}
+#SET{extras, #ENV*{extras}}
+
+
+[(#REM) Créer le container pour clndr ]
+<div id="#GET{nom}" [class="(#ENV{class})"]></div>
+
+[(#REM) On appel le javascript ]
+<script type="text/javascript">
+ $(function () {
+   // Moment prend la langue de SPIP
+   moment.locale("#LANG");
+
+   // S'il y a un fichier json, on récupère
+   [(#GET{json}|oui)
+    $.getJSON("[(#GET*{json})]").done(function (json) {
+      // Lancer clndr avec le template
+      $("\##GET{nom}").clndr({
+        template: $("#template-clndr").html(),
+        events: json,
+        startWithMonth: json\[0\].date
+      });
+    });
+   ]
+
+   [(#GET{json}|non)
+    $("\##GET{nom}").clndr({
+      template: $("#template-clndr").html()
+      [,extras: {
+        (#GET{extras})
+      }]
+
+    });
+   ]
+ });
+</script>
+[(#REM) Inclure le template javascript (Un chose bien étrange d'ailleur) ]
+#INCLURE{fond=templates_clndr/#GET{template}, env}

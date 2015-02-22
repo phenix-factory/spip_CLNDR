@@ -1,0 +1,47 @@
+<paquet
+	  prefix="clndr"
+	  categorie="date"
+	  version="1.0.0"
+	  etat="dev"
+	  compatibilite="[3.0.17;3.0.*]"
+	  logo="prive/themes/spip/images/clndr-64.png"
+	  documentation=""
+	  schema="1.0.0"
+    >
+	<!--
+		  Paquet genere le 2014-09-09 14:01:11
+		  (Vous pouvez bien entendu supprimer ces commentaires)
+	-->
+
+	<nom>CLNDR</nom>
+
+	<!-- cette balise peut etre presente plusieurs fois s'il y a plusieurs auteurs -->
+	<auteur lien='http://p.henix.be'>Vertige (Didier)</auteur>
+
+	<licence>GNU/GPL</licence>
+
+	<!--
+		  Exemple de commandes
+		  * dependances
+		  <necessite nom="saisies" compatibilite="[1.21.0;]" />
+		  <utilise nom="saisies" compatibilite="[1.21.0;]" />
+		  <lib nom="simplehtmldom" lien="http://chemin_vers_archive.zip" />
+		  * pipelines
+		  <pipeline nom="autoriser" inclure="clndr_autorisations.php" />
+		  <pipeline nom="insert_head" inclure="clndr_pipelines.php" />
+		  * declarer un pipeline
+		  <pipeline nom="mon_pipeline" action="" />
+		  * parents de menus de SPIP :
+			menu_accueil (A eviter), menu_edition, menu_publication,
+			menu_activite, menu_squelette, menu_administration, menu_configuration
+		  <menu nom="clndr" titre="clndr:clndr_titre" parent="menu_edition"  icone="images/clndr-16.png" />
+		  * parents d'onglets... configuration, plugins, statistiques, ...
+		  <onglet nom="clndr" titre="clndr:clndr_titre" parent="configuration" icone="images/clndr-24.png" />
+	-->
+
+
+	<pipeline nom="autoriser" inclure="clndr_autorisations.php" />
+	<pipeline nom="insert_head" inclure="clndr_pipelines.php" />
+	<pipeline nom="insert_head_css" inclure="clndr_pipelines.php" />
+
+</paquet>

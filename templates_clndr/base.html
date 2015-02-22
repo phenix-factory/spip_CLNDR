@@ -1,0 +1,27 @@
+<script type="text/template" id="template-clndr">
+  <table class="clndr-controls">
+    <thead>
+      <tr>
+        <th colspan="1" class="clndr-previous-button">&lsaquo;</th>
+        <th colspan="5" class="month"><%= month  %> <%= year %></th>
+        <th colspan="1" class="clndr-next-button">&rsaquo;</th>
+      </tr>
+    </thead>
+    <tbody class="clndr-grid">
+      <tr class="header-week">
+        <% _.each(daysOfTheWeek, function(day) { %>
+        <td class="header-day"><%= day %></td>
+        <% }); %>
+      </tr>
+
+      [(#REM) Boucle des jours ]
+      <% _.each(days, function(day, position) { %>
+        <% if (position%7 == 0) {%>
+          <% if (position > 0) {%> </tr> <% } %>
+            <tr class="days">
+          <% } %>
+              <td><div class="<%= day.classes %>"><%= day.day %></div></td>
+        <% }); %>
+    </tbody>
+  </table>
+</script>
