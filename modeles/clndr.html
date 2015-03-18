@@ -18,12 +18,20 @@
    // S'il y a un fichier json, on récupère
    [(#GET{json}|oui)
     $.getJSON("[(#GET*{json})]").done(function (json) {
-      // Lancer clndr avec le template
-      $("\##GET{nom}").clndr({
+
+      // Option de vase pour clndr
+      var clndr_options = {
         template: $("#template-clndr").html(),
-        events: json,
-        startWithMonth: json\[0\].date
-      });
+        events: json
+      }
+
+      // On test le résultat du json.
+      // S'il y a effectivement des evenements, on adapter le moi de début
+      if (!$.isEmptyObject(json))
+        clndr_options.startWithMonth = json\[0\].date;
+
+      // Lancer clndr avec le template
+      $("\##GET{nom}").clndr(clndr_options);
     });
    ]
 
@@ -33,7 +41,6 @@
       [,extras: {
         (#GET{extras})
       }]
-
     });
    ]
  });
