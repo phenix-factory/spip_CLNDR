@@ -21,7 +21,7 @@
 
       // Option de vase pour clndr
       var clndr_options = {
-        template: $("#template-clndr").html(),
+        template: $("#template-clndr-#GET{nom}").html(),
         events: json
       }
 
@@ -37,7 +37,7 @@
 
    [(#GET{json}|non)
     $("\##GET{nom}").clndr({
-      template: $("#template-clndr").html()
+      template: $("#template-clndr-#GET{nom}").html()
       [,extras: {
         (#GET{extras})
       }]
@@ -46,4 +46,4 @@
  });
 </script>
 [(#REM) Inclure le template javascript (Un chose bien étrange d'ailleur) ]
-#INCLURE{fond=templates_clndr/#GET{template}, env}
+#INCLURE{fond=templates_clndr/#GET{template}, env, nom=#GET{nom}}
